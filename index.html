@@ -15,28 +15,39 @@
   box-sizing:border-box;
 }
 
-body{
+html,body{
   margin:0;
+  width:100%;
+  height:100%;
   font-family:Arial,sans-serif;
   background:#0b141a;
-  color:white;
+  color:#fff;
+}
+
+body{
+  overflow:hidden;
 }
 
 .app{
   width:100%;
-  max-width:600px;
+  max-width:700px;
   height:100vh;
   margin:auto;
   display:flex;
   flex-direction:column;
+  background:#0b141a;
 }
 
+/* HEADER */
+
 .header{
+  height:64px;
+  padding:0 18px;
   background:#202c33;
-  padding:16px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
+  flex-shrink:0;
 }
 
 .title{
@@ -45,122 +56,266 @@ body{
 }
 
 .network{
-  font-size:12px;
-  color:#86efac;
+  font-size:13px;
 }
 
+/* LOGIN */
+
 .login{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
   padding:25px;
   text-align:center;
-  margin:auto;
-  width:90%;
 }
 
 .login h1{
-  font-size:32px;
+  font-size:38px;
+  margin:0 0 12px;
 }
 
 .login p{
   color:#94a3b8;
+  margin:0;
+  max-width:450px;
+  line-height:1.5;
 }
 
 .name-buttons{
+  width:100%;
+  max-width:500px;
   display:flex;
-  gap:12px;
-  margin-top:25px;
+  gap:14px;
+  margin-top:30px;
 }
 
 .name-buttons button{
   flex:1;
 }
 
-button{
-  border:0;
-  border-radius:12px;
-  padding:14px;
-  background:#16a34a;
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-}
-
-button:hover{
-  opacity:.9;
-}
+/* CHAT */
 
 .chat{
   display:none;
   flex:1;
-  flex-direction:column;
   min-height:0;
+  flex-direction:column;
 }
+
+/* STATUS */
+
+.status{
+  min-height:42px;
+  padding:10px 16px;
+  background:#111b21;
+  color:#cbd5e1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:13px;
+}
+
+.user-name{
+  color:#86efac;
+  font-weight:bold;
+}
+
+/* MESSAGES */
 
 .messages{
   flex:1;
+  min-height:0;
   overflow-y:auto;
-  padding:20px;
-  background:#0b141a;
+  padding:20px 15px;
+  display:flex;
+  flex-direction:column;
+}
+
+.empty{
+  margin:auto;
+  color:#64748b;
+  text-align:center;
+  font-size:14px;
 }
 
 .message{
-  max-width:80%;
-  padding:10px 13px;
-  margin-bottom:10px;
+  max-width:82%;
+  padding:9px 12px;
+  margin-bottom:9px;
   border-radius:10px;
-  word-wrap:break-word;
+  word-break:break-word;
+  box-shadow:0 1px 1px rgba(0,0,0,.15);
 }
 
 .me{
-  margin-left:auto;
+  align-self:flex-end;
   background:#005c4b;
+  border-bottom-right-radius:3px;
 }
 
 .other{
-  margin-right:auto;
+  align-self:flex-start;
   background:#202c33;
+  border-bottom-left-radius:3px;
 }
 
 .sender{
   font-size:11px;
   color:#86efac;
+  font-weight:bold;
   margin-bottom:4px;
+}
+
+.message-text{
+  font-size:15px;
+  line-height:1.4;
+  white-space:pre-wrap;
 }
 
 .time{
   font-size:10px;
   color:#94a3b8;
   text-align:right;
-  margin-top:4px;
+  margin-top:5px;
 }
+
+/* INPUT */
 
 .input-area{
   display:flex;
   gap:8px;
   padding:10px;
   background:#202c33;
+  flex-shrink:0;
 }
 
 input{
   flex:1;
+  min-width:0;
   border:0;
   outline:none;
   border-radius:12px;
   padding:14px;
   background:#2a3942;
-  color:white;
+  color:#fff;
   font-size:16px;
+}
+
+input::placeholder{
+  color:#94a3b8;
 }
 
 .send{
   width:60px;
   padding:10px;
+  flex-shrink:0;
 }
 
-.status{
-  padding:8px 15px;
-  font-size:12px;
-  background:#111b21;
+/* BUTTON */
+
+button{
+  border:0;
+  border-radius:12px;
+  padding:14px;
+  background:#16a34a;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  transition:.15s;
+}
+
+button:hover{
+  opacity:.9;
+}
+
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+/* LOADING */
+
+.loading{
+  position:fixed;
+  inset:0;
+  background:#0b141a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  text-align:center;
+}
+
+.loading-box{
+  padding:25px;
+}
+
+.loading-title{
+  font-size:24px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.loading-text{
   color:#94a3b8;
+  font-size:14px;
+}
+
+/* ERROR */
+
+.error-box{
+  display:none;
+  margin-top:20px;
+  max-width:500px;
+  padding:12px;
+  border-radius:10px;
+  background:#451a1a;
+  color:#fecaca;
+  font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+  .header{
+    height:58px;
+    padding:0 14px;
+  }
+
+  .title{
+    font-size:18px;
+  }
+
+  .login h1{
+    font-size:32px;
+  }
+
+  .name-buttons{
+    gap:10px;
+  }
+
+  .message{
+    max-width:88%;
+  }
+
+  .messages{
+    padding:15px 10px;
+  }
+
+}
+
+/* SCROLLBAR */
+
+.messages::-webkit-scrollbar{
+  width:6px;
+}
+
+.messages::-webkit-scrollbar-thumb{
+  background:#334155;
+  border-radius:10px;
 }
 
 </style>
@@ -170,58 +325,136 @@ input{
 
 <div class="app">
 
-  <div class="header">
-    <div class="title">💬 Low-Net Chat</div>
-    <div class="network" id="network">Checking...</div>
+  <!-- LOADING -->
+
+  <div class="loading" id="loading">
+
+    <div class="loading-box">
+
+      <div class="loading-title">
+        💬 Low-Net Chat
+      </div>
+
+      <div class="loading-text" id="loadingText">
+        Connecting to Firebase...
+      </div>
+
+    </div>
+
   </div>
+
+
+  <!-- HEADER -->
+
+  <div class="header">
+
+    <div class="title">
+      💬 Low-Net Chat
+    </div>
+
+    <div
+      class="network"
+      id="network"
+    >
+      Checking...
+    </div>
+
+  </div>
+
 
   <!-- LOGIN -->
 
-  <div class="login" id="login">
+  <div
+    class="login"
+    id="login"
+  >
 
-    <h1>Low-Net Chat</h1>
+    <h1>
+      Low-Net Chat
+    </h1>
 
     <p>
-      Simple chat designed to use very little data.
+      Simple private chat.
     </p>
 
     <div class="name-buttons">
 
-      <button onclick="enterChat('A')">
+      <button
+        id="buttonA"
+        onclick="enterChat('A')"
+      >
         👤 A
       </button>
 
-      <button onclick="enterChat('B')">
+      <button
+        id="buttonB"
+        onclick="enterChat('B')"
+      >
         👤 B
       </button>
 
     </div>
+
+    <div
+      class="error-box"
+      id="errorBox"
+    ></div>
 
   </div>
 
 
   <!-- CHAT -->
 
-  <div class="chat" id="chat">
+  <div
+    class="chat"
+    id="chat"
+  >
 
     <div class="status">
-      You are <b id="currentUser"></b>
+
+      <div>
+        You are
+        <span
+          class="user-name"
+          id="currentUser"
+        ></span>
+      </div>
+
+      <div>
+        🟢 Connected
+      </div>
+
     </div>
 
-    <div class="messages" id="messages">
+
+    <div
+      class="messages"
+      id="messages"
+    >
+
+      <div
+        class="empty"
+        id="emptyMessage"
+      >
+        No messages yet.
+      </div>
+
     </div>
+
 
     <div class="input-area">
 
       <input
         id="messageInput"
         type="text"
+        maxlength="2000"
         placeholder="Type a message..."
         autocomplete="off"
       >
 
       <button
         class="send"
+        id="sendButton"
         onclick="sendMessage()"
       >
         ➤
@@ -236,40 +469,75 @@ input{
 
 <script>
 
-/* =========================
+/* =========================================
    FIREBASE CONFIG
-   ========================= */
+========================================= */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCjt2DaN9QCUVazu-sxYAUt_aNJFI62GMQ",
-  authDomain: "private-chat-app-2a7e3.firebaseapp.com",
-  projectId: "private-chat-app-2a7e3",
-  storageBucket: "private-chat-app-2a7e3.firebasestorage.app",
-  messagingSenderId: "871441421629",
-  appId: "1:871441421629:web:ed2aabb24cc528dbfca154"
+
+  apiKey:
+    "AIzaSyCjt2DaN9QCUVazu-sxYAUt_aNJFI62GMQ",
+
+  authDomain:
+    "private-chat-app-2a7e3.firebaseapp.com",
+
+  projectId:
+    "private-chat-app-2a7e3",
+
+  storageBucket:
+    "private-chat-app-2a7e3.firebasestorage.app",
+
+  messagingSenderId:
+    "871441421629",
+
+  appId:
+    "1:871441421629:web:ed2aabb24cc528dbfca154"
+
 };
 
-firebase.initializeApp(firebaseConfig);
 
-const auth = firebase.auth();
-const db = firebase.firestore();
+/* =========================================
+   FIREBASE START
+========================================= */
+
+let app;
+let auth;
+let db;
+
+try{
+
+  app = firebase.initializeApp(firebaseConfig);
+
+  auth = firebase.auth();
+
+  db = firebase.firestore();
+
+}catch(error){
+
+  console.error(error);
+
+  document.getElementById("loadingText").textContent =
+    "Firebase start nahi hua.";
+
+}
 
 
-/* =========================
+/* =========================================
    VARIABLES
-   ========================= */
+========================================= */
 
 let currentUser = null;
-let unsubscribe = null;
+let unsubscribeMessages = null;
 
 
-/* =========================
-   NETWORK STATUS
-   ========================= */
+/* =========================================
+   NETWORK
+========================================= */
 
 function updateNetwork(){
 
-  const network = document.getElementById("network");
+  const network =
+    document.getElementById("network");
 
   if(navigator.onLine){
 
@@ -285,188 +553,377 @@ function updateNetwork(){
 
 }
 
-window.addEventListener("online",updateNetwork);
-window.addEventListener("offline",updateNetwork);
+window.addEventListener(
+  "online",
+  updateNetwork
+);
+
+window.addEventListener(
+  "offline",
+  updateNetwork
+);
 
 updateNetwork();
 
 
-/* =========================
-   ENTER CHAT
-   ========================= */
+/* =========================================
+   HIDE LOADING
+========================================= */
 
-async function enterChat(name){
+function hideLoading(){
 
-  currentUser = name;
-
-  try{
-
-    await auth.signInAnonymously();
-
-    document.getElementById("login").style.display = "none";
-
-    document.getElementById("chat").style.display = "flex";
-
-    document.getElementById("currentUser").textContent = name;
-
-    listenMessages();
-
-  }catch(error){
-
-    alert(
-      "Firebase error: " + error.code
-    );
-
-    console.log(error);
-
-  }
+  document.getElementById("loading").style.display =
+    "none";
 
 }
 
 
-/* =========================
-   SEND MESSAGE
-   ========================= */
+/* =========================================
+   SHOW ERROR
+========================================= */
 
-async function sendMessage(){
+function showError(message){
 
-  const input =
-    document.getElementById("messageInput");
+  const box =
+    document.getElementById("errorBox");
 
-  const text =
-    input.value.trim();
+  box.style.display = "block";
 
-  if(!text) return;
+  box.textContent = message;
 
-  if(!navigator.onLine){
+}
 
-    alert(
-      "Internet connection nahi hai. Message network aane par bhejne ke liye save karna next step mein add karenge."
+
+/* =========================================
+   ENTER CHAT
+========================================= */
+
+async function enterChat(name){
+
+  if(!auth){
+
+    showError(
+      "Firebase properly start nahi hua."
     );
 
     return;
 
   }
 
+  currentUser = name;
+
+  const buttonA =
+    document.getElementById("buttonA");
+
+  const buttonB =
+    document.getElementById("buttonB");
+
+  buttonA.disabled = true;
+  buttonB.disabled = true;
+
   try{
 
-    await db.collection("messages").add({
+    await auth.signInAnonymously();
 
-      sender: currentUser,
+    document.getElementById("login")
+      .style.display = "none";
 
-      text: text,
+    document.getElementById("chat")
+      .style.display = "flex";
 
-      createdAt:
-        firebase.firestore.FieldValue.serverTimestamp()
+    document.getElementById("currentUser")
+      .textContent = name;
 
-    });
+    listenMessages();
 
-    input.value = "";
+    setTimeout(function(){
+
+      document
+        .getElementById("messageInput")
+        .focus();
+
+    },100);
 
   }catch(error){
 
-    console.log(error);
-
-    alert(
-      "Message send nahi hua: " + error.code
+    console.error(
+      "Firebase Authentication Error:",
+      error
     );
+
+    showError(
+      "Firebase login error: " +
+      error.code
+    );
+
+    buttonA.disabled = false;
+    buttonB.disabled = false;
 
   }
 
 }
 
 
-/* =========================
-   ENTER KEY
-   ========================= */
+/* =========================================
+   SEND MESSAGE
+========================================= */
 
-document
-  .getElementById("messageInput")
-  .addEventListener("keydown",function(e){
+async function sendMessage(){
 
-    if(e.key === "Enter"){
+  const input =
+    document.getElementById("messageInput");
 
-      sendMessage();
+  const sendButton =
+    document.getElementById("sendButton");
 
-    }
+  const text =
+    input.value.trim();
 
-  });
+  if(!text){
 
-
-/* =========================
-   RECEIVE MESSAGES
-   ========================= */
-
-function listenMessages(){
-
-  if(unsubscribe){
-
-    unsubscribe();
+    return;
 
   }
 
-  unsubscribe =
-    db.collection("messages")
+  if(!currentUser){
+
+    alert(
+      "Pehle A ya B select karo."
+    );
+
+    return;
+
+  }
+
+  if(!navigator.onLine){
+
+    alert(
+      "Internet connection nahi hai."
+    );
+
+    return;
+
+  }
+
+  sendButton.disabled = true;
+
+  try{
+
+    await db
+      .collection("messages")
+      .add({
+
+        sender: currentUser,
+
+        text: text,
+
+        createdAt:
+          firebase.firestore.FieldValue.serverTimestamp()
+
+      });
+
+    input.value = "";
+
+    input.focus();
+
+  }catch(error){
+
+    console.error(
+      "Message send error:",
+      error
+    );
+
+    alert(
+      "Message send nahi hua: " +
+      error.code
+    );
+
+  }finally{
+
+    sendButton.disabled = false;
+
+  }
+
+}
+
+
+/* =========================================
+   ENTER KEY
+========================================= */
+
+document
+  .getElementById("messageInput")
+  .addEventListener(
+    "keydown",
+    function(event){
+
+      if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        sendMessage();
+
+      }
+
+    }
+  );
+
+
+/* =========================================
+   RECEIVE MESSAGES
+========================================= */
+
+function listenMessages(){
+
+  if(unsubscribeMessages){
+
+    unsubscribeMessages();
+
+    unsubscribeMessages = null;
+
+  }
+
+  unsubscribeMessages =
+    db
+      .collection("messages")
       .orderBy("createdAt","asc")
       .limitToLast(100)
       .onSnapshot(
 
-        snapshot => {
+        function(snapshot){
 
           const box =
             document.getElementById("messages");
 
+          const empty =
+            document.getElementById("emptyMessage");
+
           box.innerHTML = "";
 
-          snapshot.forEach(doc => {
+          if(snapshot.empty){
 
-            const data = doc.data();
-
-            const div =
+            const emptyDiv =
               document.createElement("div");
 
-            div.className =
-              "message " +
-              (data.sender === currentUser
-                ? "me"
-                : "other");
+            emptyDiv.className = "empty";
 
-            const date =
-              data.createdAt
-                ? data.createdAt.toDate()
-                : new Date();
+            emptyDiv.textContent =
+              "No messages yet.";
 
-            div.innerHTML =
+            box.appendChild(emptyDiv);
 
-              '<div class="sender">' +
-              escapeHtml(data.sender) +
-              '</div>' +
+            return;
 
-              '<div>' +
-              escapeHtml(data.text) +
-              '</div>' +
+          }
 
-              '<div class="time">' +
-              date.toLocaleTimeString([],{
-                hour:"2-digit",
-                minute:"2-digit"
-              }) +
-              '</div>';
+          snapshot.forEach(
+            function(doc){
 
-            box.appendChild(div);
+              const data =
+                doc.data();
 
-          });
+              const messageDiv =
+                document.createElement("div");
+
+              messageDiv.className =
+                "message " +
+                (
+                  data.sender === currentUser
+                    ? "me"
+                    : "other"
+                );
+
+
+              const senderDiv =
+                document.createElement("div");
+
+              senderDiv.className =
+                "sender";
+
+              senderDiv.textContent =
+                data.sender || "Unknown";
+
+
+              const textDiv =
+                document.createElement("div");
+
+              textDiv.className =
+                "message-text";
+
+              textDiv.textContent =
+                data.text || "";
+
+
+              const timeDiv =
+                document.createElement("div");
+
+              timeDiv.className =
+                "time";
+
+
+              let date;
+
+              if(
+                data.createdAt &&
+                typeof data.createdAt.toDate === "function"
+              ){
+
+                date =
+                  data.createdAt.toDate();
+
+              }else{
+
+                date =
+                  new Date();
+
+              }
+
+
+              timeDiv.textContent =
+                date.toLocaleTimeString(
+                  [],
+                  {
+                    hour:"2-digit",
+                    minute:"2-digit"
+                  }
+                );
+
+
+              messageDiv.appendChild(
+                senderDiv
+              );
+
+              messageDiv.appendChild(
+                textDiv
+              );
+
+              messageDiv.appendChild(
+                timeDiv
+              );
+
+              box.appendChild(
+                messageDiv
+              );
+
+            }
+          );
+
 
           box.scrollTop =
             box.scrollHeight;
 
         },
 
-        error => {
+        function(error){
 
-          console.log(
+          console.error(
             "Firestore error:",
             error
+          );
+
+          alert(
+            "Chat database error: " +
+            error.code
           );
 
         }
@@ -476,20 +933,45 @@ function listenMessages(){
 }
 
 
-/* =========================
-   SECURITY
-   ========================= */
+/* =========================================
+   FIREBASE CHECK
+========================================= */
 
-function escapeHtml(text){
+if(auth){
 
-  const div =
-    document.createElement("div");
+  auth.onAuthStateChanged(
+    function(user){
 
-  div.textContent = text;
+      if(user){
 
-  return div.innerHTML;
+        console.log(
+          "Firebase connected:",
+          user.uid
+        );
+
+      }
+
+    }
+  );
 
 }
+
+
+/* =========================================
+   PAGE READY
+========================================= */
+
+window.addEventListener(
+  "load",
+  function(){
+
+    setTimeout(
+      hideLoading,
+      500
+    );
+
+  }
+);
 
 </script>
 
